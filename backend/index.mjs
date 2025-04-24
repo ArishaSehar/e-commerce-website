@@ -1,24 +1,26 @@
 const port = 4000;
-const express = require("express");
+import express from "express"
 const app = express();
-const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const multer = require("multer");
-const path = require("path");
-const cors = require("cors");
+import mongoose from "mongoose";
+import jwt  from "jsonwebtoken";
+import multer from "multer";
+import path from "path";
+import cors from "cors";
 
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Middlewares
 app.use(express.json());
 app.use(cors());
 
 // Database connection with MongoDB
-mongoose.connect("mongodb+srv://areesha:intel84533@cluster01.ga9soet.mongodb.net/e-commerce-website", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.then(() => console.log("✅ MongoDB connected successfully"))
-.catch((err) => console.log("❌ MongoDB connection error:", err));
+// mongoose.connect("mongodb+srv://areesha:intel84533@cluster01.ga9soet.mongodb.net/e-commerce-website", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// })
+// .then(() => console.log("✅ MongoDB connected successfully"))
+// .catch((err) => console.log("❌ MongoDB connection error:", err));
 
 // Default route
 app.get("/", (req, res) => {
